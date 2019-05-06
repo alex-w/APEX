@@ -1,0 +1,96 @@
+<html>
+
+<body>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td valign="top" width="300"  style="font-family:monospace">
+
+<h2>APEX user manual</h2>
+
+&#9675; <a href="index.html">APEX under Ubuntu</a><br>
+
+&#9675; <a href="windows.html">APEX under Windows</a><br>
+
+&#9675; <a href="conf.html">APEX configuration</a><br>
+
+&#9675; <a href="apex_calibrate.html">Image calibration</a><br>
+
+&#9679; Automated image processing<br>
+
+&#9675; <a href="apex_geo.html">Manual image processing</a><br>
+
+&#9675; <a href="apex_geo_monitor.html">Image processing monitor</a><br>
+
+&#9675; <a href="apex_geo_postprocess.html">Postprocessing</a><br>
+
+&#9675; <a href="apex_geo_ephem.html">Ephemeris calculation</a>
+
+</td>
+
+<td style="font-family:monospace">
+
+<h3>Automated image processing with APEX</h3>
+
+<p>
+
+<hr>
+
+<h4>Basic procedure</h4>
+
+<p>If necessary, prior to the automated image processing adjust the script section <b>[apex_geo_auto]</b> and all relevant module sections in the <a href="conf.html">APEX configuration file</a>.
+
+<p>Put all light frames into one folder. In the same folder run the APEX script:
+
+<p style="background-color:lightgray">apex_geo_auto.py
+
+<p>The processing consists of two stages: 1) space object extraction, 2) cross-correlation of detections.
+
+<p>Depending on the settings in the APEX configuration file and on how successful was the processing, upon completion of its work the script may generate some of the following files:
+
+<p>
+-- <b>&lt;light_frame_filename&gt;.fit.apex</b> files (temporary "apex.Image" reference instances for the processing)<br>
+-- <b>&lt;light_frame_filename&gt;.proclog</b> files (single frame processing log)<br>
+-- <b>apex_geo_auto.&lt;UT-date&gt;.&lt;UT-time&gt;.proclog</b> (general script processing log)<br>
+-- <b>&lt;UT-date&gt;_&lt;station_code&gt;.RES</b> (measurements in the "telegram" format)<br>
+-- <b>&lt;UT-date&gt;_&lt;station_code&gt;.xml</b> (measurements in the "ISON" format)<br>
+-- <b>frames.txt</b> (list of frames where each object is present)<br>
+-- <b>problems.txt</b> (list of problematic frames)
+
+<hr>
+
+<h4>In-process image calibration</h4>
+
+<p>To calibrate light frames during the image processing, put the required masterdark and masterflat frames into the same folder with the light frames, and enable calibration by setting the corresponding option <b>disable_calib = 0</b> in the script section <b>[apex_geo_auto]</b> of the APEX configuration file. If necessary, adjust all other related sections in the APEX configuration file, such as <b>[apex_calibrate]</b> and others.
+
+<hr>
+
+<h4>Processing of selected frames</h4>
+
+<p>To avoid processing of all light frames in the working folder and to process only selected light frames, run the script either with a filename mask:
+
+<p style="background-color:lightgray">apex_geo_auto.py &lt;filename_mask&gt;
+
+<p>or with a specified list of files (a plain ASCII text file with light frame filenames listed one per line):
+
+<p style="background-color:lightgray">apex_geo_auto.py @&lt;listfile&gt;
+
+<hr>
+
+<p>last updated: 06.05.2019
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+<html>

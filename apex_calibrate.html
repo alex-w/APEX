@@ -1,0 +1,101 @@
+<html>
+
+<body>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td valign="top" width="300"  style="font-family:monospace">
+
+<h2>APEX user manual</h2>
+
+&#9675; <a href="index.html">APEX under Ubuntu</a><br>
+
+&#9675; <a href="windows.html">APEX under Windows</a><br>
+
+&#9675; <a href="conf.html">APEX configuration</a><br>
+
+&#9679; Image calibration<br>
+
+&#9675; <a href="apex_geo_auto.html">Automated image processing</a><br>
+
+&#9675; <a href="apex_geo.html">Manual image processing</a><br>
+
+&#9675; <a href="apex_geo_monitor.html">Image processing monitor</a><br>
+
+&#9675; <a href="apex_geo_postprocess.html">Postprocessing</a><br>
+
+&#9675; <a href="apex_geo_ephem.html">Ephemeris calculation</a>
+
+</td>
+
+<td style="font-family:monospace">
+
+<h3>Image calibration with APEX</h3>
+
+<p>
+
+<hr>
+
+<h4>Generation of masterdark frames</h4>
+
+<p>If necessary, prior to the generation of the masterflat frame adjust the module section <b>[apex.util.automation.calibration]</b> and all module sections <b>[apex.calibration.*]</b> in the <a href="conf.html">APEX configuration file</a>.
+
+<p>Put all single dark frames into one folder; there is no need to create separate folders for groups of dark frames of different exposure times and/or temperatures, because APEX will automatically identify these groups and generate separate masterdark frames on the bases of only those dark frames which belong together.
+
+<p>In the same folder run the APEX script:
+
+<p style="background-color:lightgray">apex_superdark.py
+
+<p>Upon completion of its work the script will generate masterdark frames for all given masterdark groups of certain temperatures and exposure times in the same folder. The filename of each masterdark frame will contain the temperature, the exposure time and the total number of single dark frames used for its generation.
+
+<hr>
+
+<h4>Generation of the masterflat frame</h4>
+
+<p>If necessary, prior to the generation of the masterflat frame adjust the module section <b>[apex.util.automation.calibration]</b> and all module sections <b>[apex.calibration.*]</b> in the <a href="conf.html">APEX configuration file</a>.
+
+<p>Put all single flat frames (it is also possible to use light frames instead) and their corresponding masterdark frames into one folder; there is no need to create separate folders for groups of flat frames of different exposure times and/or temperatures, because APEX will automatically identify these groups and apply their corresponding masterdark frames.
+
+<p>In the same folder run the APEX script:
+
+<p style="background-color:lightgray">apex_superflat.py
+
+<p>Upon completion of its work the script will generate the masterflat frame in the same folder.
+
+<hr>
+
+<h4>Calibration of light frames</h4>
+
+<p>If necessary, prior to the calibration of light frames adjust the script section <b>[apex_calibrate]</b> and all module sections <b>[apex.calibration.*]</b> in the <a href="conf.html">APEX configuration file</a>.
+
+<p>Put all light frames and their corresponding masterdark frames and the masterflat frame into one folder; there is no need to create separate folders for groups of light frames of different exposure times and/or temperatures, because APEX will automatically determine for each light frame which masterdark frame must/can be applied to it. If no masterdark frame is available for some particular exposure time and/or temperature, but at least two other masterdark frames are available, then APEX will extrapolate and apply a virtual masterdark frame on the basis of all available masterdark frames.
+
+<p>In the same folder run the APEX script:
+
+<p style="background-color:lightgray">apex_calibrate.py
+
+<hr>
+
+<h4>Image calibration during image processing</h4>
+
+<p>During <a href="apex_geo.html">manual</a> and <a href="apex_geo_auto.html">automated</a> image processing with APEX scripts <b>apex_geo</b> and <b>apex_geo_auto</b>, if necessary, it is possible to enable automated image calibration. Details are described in the corresponding chapters of this manual.
+
+<hr>
+
+<p>last updated: 06.05.2019
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+<html>

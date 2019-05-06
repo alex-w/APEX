@@ -1,0 +1,434 @@
+<html>
+
+<body>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td valign="top" width="300"  style="font-family:monospace">
+
+<h2>APEX user manual</h2>
+
+&#9675; <a href="index.html">APEX under Ubuntu</a><br>
+
+&#9675; <a href="windows.html">APEX under Windows</a><br>
+
+&#9679; APEX configuration<br>
+
+&#9675; <a href="apex_calibrate.html">Image calibration</a><br>
+
+&#9675; <a href="apex_geo_auto.html">Automated image processing</a><br>
+
+&#9675; <a href="apex_geo.html">Manual image processing</a><br>
+
+&#9675; <a href="apex_geo_monitor.html">Image processing monitor</a><br>
+
+&#9675; <a href="apex_geo_postprocess.html">Postprocessing</a><br>
+
+&#9675; <a href="apex_geo_ephem.html">Ephemeris calculation</a>
+
+</td>
+
+<td style="font-family:monospace">
+
+<h3>APEX configuration file: apex.conf</h3>
+
+<hr>
+
+<h4>General information</h4>
+
+<p>For proper funcionality of APEX its configuration file (apex.conf) must be adjusted according to different pecularities of each case: geographical position of the observing site, local folder pathnames, image characteristics, etc.
+
+<p>On Ubuntu APEX configuration file is located in the default folder: ~/.Apex
+
+<p>On Windows APEX configuration file is located in the default folder: C:\Users\{username}\.Apex
+
+<p>Configuration file consists of sections; sections consist of options and their values.
+
+<p>Any text string behind the "#" symbol is considered in the configuration file to be a comment.
+
+<p>If the configuration file is located in the same folder, in which an APEX script is run, it will have higher priority than the configuration file in the default folder.
+
+<p>To use a configuration file located in an arbitrary folder, load it with a parameter "-c:" when runnning an APEX script (specify the full path to the configuration file in accordance with the operating system syntax):
+
+<p style="background-color:lightgray">script_name.py -c:&lt;full_path&gt;/apex.conf
+
+<hr>
+
+<h4>Sections</h4>
+
+<p>Sections are separated from each other by blank lines. There are two types of sections: 1) APEX script sections (having exactly the same names as the corresponding scripts), and 2) APEX module sections (having names made of "apex.*" and of corresponding module/submodule names). Each section name is written in square parentheses, e.g. [apex_geo] or [apex.extraction]. If a section is missing in the configuration file, then APEX uses default values of all options of that section. If needed, the missing section can be added to the configuration file manually by editing it in an ASCII text editor. For practical reasons it is advisable to keep sections in alphabetical order within the configuration file, but internally it makes no difference for APEX in which order the sections are listed.
+
+<hr>
+
+<h4>Options</h4>
+
+<p>If an option is missing in a section in the configuration file, then APEX uses its default value. If needed, the missing option can be added to the related section in the configuration file manually by editing it in an ASCII text editor. For practical reasons it is advisable to keep options in alphabetical order within their sections in the configuration file, but internally it makes no difference for APEX in which order the options are listed within their sections.
+
+<hr>
+
+<h4>Script section [apex_calibrate]</h4>
+
+<b>Options:</b>
+
+<pre>
+cosmetic =                      # [bool] Enable cosmetic correction, default: 1
+cosmics =                       # [bool] Enable cosmic ray elimination, default: 0
+dark =                          # [bool] Enable dark frame correction, default: 1
+flat =                          # [bool] Enable flat field correction, default: 1
+sky =                           # [bool] Enable sky background correction, default: 1
+</pre>
+
+<b>Notes:</b>
+
+<p>This section is always used by the script <b>apex_calibrate</b>, as well as by the scripts <b>apex_geo</b> and <b>apex_geo_auto</b> when run with the option <b>disable_calib = 0</b> set in the corresponding script section. To minimize image processing time it is advisable to set the options "dark" and "flat" to 0, if there is no need of precise photometric reduction. An unexperienced user is advised to use the default value of the option "cosmics".
+
+<p>If the option "cosmetic" is set to 1, then the module section <b>[apex.calibration.cosmetic]</b> is implied.
+
+<p>If the option "cosmics" is set to 1, then the module section <b>[apex.calibration.cosmic_rays]</b> is implied.
+
+<p>If the option "dark" is set to 1, then the module section <b>[apex.calibration.dark]</b> is implied.
+
+<p>If the option "flat" is set to 1, then the module section <b>[apex.calibration.flat]</b> is implied.
+
+<p>If the option "sky" is set to 1, then the module sections <b>[apex.calibration.background*]</b> are implied.
+
+<p>
+
+<hr>
+
+<h4>Script section [apex_geo]</h4>
+
+<b>Options:</b>
+
+<pre>
+auto_postfilter =               # [bool] Automatically choose between trail_cluster and cluster postfilter based on the expected star trail length, default: 1
+disable_calib =                 # [bool] Turn off automatic image calibration, default: 0
+disable_measurement =           # [bool] Disable PSF fitting stage; use barycenter/manual XY positions of objects, default: 0
+ignore_refstars =               # [bool] Ignore explicit XY positions of reference stars in the image header, default: 0
+overwrite_frame =               # [bool] Overwrite the original frame file after processing, default: 0
+target_match_tol =              # [float] Manual target GEO XY position accuracy, px (target_match_tol >= 0), default: 5.0
+trail_len_tol =                 # [float] Star trail length tolerance, px (0 to disable trail length check) (trail_len_tol >= 0), default: 5.0
+trail_width_tol =               # [float] Star trail width tolerance factor (0 to disable trail width check) (trail_width_tol >= 0), default: 3.0
+</pre>
+
+<b>Notes:</b>
+
+<p>
+
+<hr>
+
+<h4>Script section [apex_geo_auto]</h4>
+
+<b>Options:</b>
+
+<pre>
+auto_postfilter =               # [bool] Automatically choose between trail_cluster and cluster postfilter based on the expected star shape, default: 1
+deblend =                       # [bool] GEO detection: enable deblending, default: 0
+disable_calib =                 # [bool] Turn off automatic image calibration, default: 0
+disable_measurement =           # [bool] Disable the PSF fitting stage; use barycenter/manual XY positions'), default: 0
+disable_search =                # [bool] Disable the automatic GEO detection stage, default: 0
+exclude_starlike =              # [bool] Exclude star-like detections, default: 1
+fit_tol =                       # [float] Desired relative error of fit for GEO objects (geo_fit_tol > 0), default: 0.0001
+identify_detections =           # [bool] Match GEOs detected against orbital element databases available, default: 0
+max_detections =                # [int] Discard images with that many detections (0 to disable) (max_detections >= 0), default: 500
+max_iter =                      # [int] Maximum number of fitting iterations for GEO objects (0 = auto) (geo_max_iter >= 0), default: 0
+min_frames =                    # [int] Minimum number of frames in a series (min_frames >= 0), default: 5
+postfilter_chain =              # [str] GEO detection: filters applied before segmentation, default: trail_elim, cluster
+prefilter_chain =               # [str] GEO detection: filters applied before thresholding, default: upenv
+rois =                          # [str] List of regions of interest in the X:Y[:R] form; default for R is inferred from seeing, default: ,
+series_by_target =              # [bool] Match frames of the same series by target name (and by target name only, if series_tol = series_len = 0), default: 0
+series_len =                    # [float] Maximum allowed duration of a single series, minutes (series_len >= 0), default: 30.0
+series_tol =                    # [float] Maximum relative displacement of frames within a series, arcmin (series_tol >= 0), default: 10.0
+subtract_stars =                # [bool] Subtract detected reference stars before detecting GEO objects, default: 1
+target_match_tol =              # [float] Manual target GEO XY position accuracy, px (target_match_tol >= 0), default: 2.0
+threshold =                     # [float] GEO detection threshold in units of noise RMS (geo_threshold > 0), default: 2.5
+trail_len_tol =                 # [float] Star trail length tolerance, px (0 to disable trail length check) (trail_len_tol >= 0), default: 5.0
+trail_width_tol =               # [float] Star trail width tolerance factor (0 to disable trail width check) (trail_width_tol >= 0), default: 3.0
+</pre>
+
+<b>Notes:</b>
+
+<p>
+
+<hr>
+
+<h4>Script section [apex_geo_ephem]</h4>
+
+<b>Options:</b>
+
+<pre>
+interval =                      # [float] Ephemeris interval in days (interval > 0), default: 7.0
+max_h_sun =                     # [float] Skip intervals where Sun is above this elevation, in degrees (-90 < max_h_sun <= 90), default: -10.0
+max_mag =                       # [float] Skip intervals where the object is fainter than specified (0 - no magnitude constraint) (max_mag >= 0), default: 0.0
+max_vel =                       # [float] Skip intervals where the object is faster than specified, in arcsec/s (0 - no velocity constraint) (max_vel >= 0), default: 0.0
+min_h =                         # [float] Skip intervals where elevation is below this limit, in degrees (-90 <= min_h < 90), default: 15.0
+radec =                         # [str] Choose to output true or mean RA and Dec (true, mean), default: true
+refraction =                    # [bool] Account for refraction in coordinates, default: 1
+skip_shadow =                   # [bool] Skip intervals where the object is eclipsed, default: 0
+step =                          # [float] Ephemeris step in seconds (step > 0), default: 600.0
+template =                      # [str] Ephemeris file name template, default: (obj)_(site)_(rdate)
+</pre>
+
+<b>Notes:</b>
+
+<p>
+
+<hr>
+
+<h4>Script section [apex_geo_monitor]</h4>
+
+<b>Options:</b>
+
+<pre>
+ask_for_directory =             # [bool] Run directory selection dialog at startup, use watched_directory as a starting point, default: 1
+excluded_files_mask =           # Regular expression describing image file names to be ingnored. Case insensitive., default: r'^dummy.*'
+worker_script_options =         # Options to be passed to the script (separated with blanks), default: ''
+files_check_interval =          # [s] Directory poll rate (files_check_interval >= 0), default: 2.0
+watched_directory =             # [str] Directory to monitor or default for startup directory selection if enabled, default: .
+</pre>
+
+<b>Notes:</b>
+
+<p>
+
+<hr>
+
+<h4>Script section [apex_geo_postprocess]</h4>
+
+<b>Options:</b>
+
+<pre>
+dump_orbit =                    # [bool] Dump orbital elements to .check file, default: 0
+max_track_len =                 # [float] Maximum allowed duration of a single track, minutes (max_track_len > 0), default: 300.0
+save_orbit =                    # [str] Save orbital elements to files (none, uncorrelated, all), default: none
+split_by_match =                # [bool] Split series in .check file according to catalog match, default: 0
+</pre>
+
+<b>Notes:</b>
+
+<p>
+
+<hr>
+
+<h4>Module section [apex]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.catalog.ison_reader]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.catalog.tle_reader]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.catalog.tyc2_reader]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.catalog.ucac_reader]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.extra.GEO.detection]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.extra.GEO.ephem]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.extra.GEO.report]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.extra.MP.mpc_report]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.extraction]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.identification]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.measurement.aperture]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.measurement.rejection.standard_rejectors]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.parallel]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.photometry]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.photometry.differential]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<h4>Module section [apex.sitedef]</h4>
+
+<b>Options:</b>
+
+<pre>
+altitude =                      # [float] [m] Observatory elevation above the reference spheroid (MSL), for example: 1256.21
+latitude =                      # [float] [deg] Observatory latitude (positive for North) (-90 <= latitude <= 90), for example: 40.817566
+longitude =                     # [float] [deg] Observatory longitude (positive for East) (-180 <= longitude <= 180), for example: 15.463387
+observatory_code =              # [str] IAU observatory code, for example: L28
+update_interval =               # [int] [day] MPC observatory code database update interval (0 to disable auto-update) (update_interval >= 0), default value: 0
+</pre>
+
+<b>Notes:</b>
+
+<p>First three options must be assigned values prior to any image processing with implicit astrometric reduction. Last two options are voluntary in general, but can automatize and simplify the work with the script <b>apex_mpc</b>.
+
+<hr>
+
+<h4>Module section [apex.util.automation.calibration]</h4>
+
+<b>Options:</b>
+
+<pre>
+</pre>
+
+<b>Notes:</b>
+
+<hr>
+
+<p>last updated: 06.05.2019
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+<html>

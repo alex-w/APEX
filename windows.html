@@ -1,0 +1,118 @@
+<html>
+
+<body>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td valign="top" width="300"  style="font-family:monospace">
+
+<h2>APEX user manual</h2>
+
+&#9675; <a href="index.html">APEX under Ubuntu</a><br>
+
+&#9679; APEX under Windows<br>
+
+&#9675; <a href="conf.html">APEX configuration</a><br>
+
+&#9675; <a href="apex_calibrate.html">Image calibration</a><br>
+
+&#9675; <a href="apex_geo_auto.html">Automated image processing</a><br>
+
+&#9675; <a href="apex_geo.html">Manual image processing</a><br>
+
+&#9675; <a href="apex_geo_monitor.html">Image processing monitor</a><br>
+
+&#9675; <a href="apex_geo_postprocess.html">Postprocessing</a><br>
+
+&#9675; <a href="apex_geo_ephem.html">Ephemeris calculation</a>
+
+</td>
+
+<td style="font-family:monospace">
+
+<h3>Installation under Windows</h3>
+
+<p>This describes the "standalone" APEX installation under Windows 7 (32-bit). This description is valid for the APEX version 2.4.1.20190206.
+
+<hr>
+
+<h4>Installation of dependencies: star catalogues</h4>
+
+<p>For astrometric & photometric reduction as well as for object identification during image processing at least one star catalogue must be available for reference. It is possible to use different star catalogues for either of the two reductions. The catalogue priority system allows to use multiple star catalogues one after another in case the higher priority catalogue fails.
+
+<p>To use the Tycho-2 catalogue, create the folder "Tycho-2" anywhere on your hard drives (e.g. C:\Catalogues\Tycho-2) and put there all four files of the Tycho-2 catalogue: index.dat, suppl_1.dat, suppl_2.dat and tyc2.dat.
+
+<p>If necessary, in a similar way create folders for other star catalogues (e.g. for UCAC5: C:\Catalogs\UCAC5) and put there all catalogue files.
+
+<hr>
+
+<h4>Installation of dependencies: satellite orbit catalogues</h4>
+
+<p>For object identification and ephemeris calculation during artificial satellite image processing at least one satellite orbit catalogue must be available for reference. It is possible to use satellite orbit catalogues in TLE and ISON formats. The catalogue priority system allows to use multiple satellite orbit catalogues one after another in case the higher priority catalogue fails.
+
+<p>To use the TLE orbit catalogues, create the folder TLE anywhere on your hard drives (e.g. C:\Catalogs\TLE) and put there all TLE catalogue files.
+
+<p>To use the ISON orbit catalogues, create the folder ISON anywhere on your hard drives (e.g. C:\Catalogs\ISON) and put there all ISON catalogue files.
+
+<hr>
+
+<h4>Installation of APEX main package</h4>
+
+<p>Go to the folder where the apex-2.4.1-20190206-win32-setup.exe is stored and run it. The icon "APEX GUI" will appear on the desktop upon installation completion.
+
+<hr>
+
+<h4>Installation of APEX GEO package</h4>
+
+<p>Notice: Installation of APEX GEO package must be done only, if you plan to use APEX for artificial satellite image processing.
+
+<p>Go to the folder where the apex-geo-4.1.5-win32-setup.exe is stored and run it.
+
+<hr>
+
+<h3>Usage under Windows</h3>
+
+<p>APEX must be <a href="conf.html">configured</a> prior to the usage of most of its scripts; only in rare cases default values of configuration options will be acceptable.
+
+<p>All APEX scripts are located in the folder: C:\Apex
+
+<p>To run an APEX script either with default option values or with option values given in the configuration file (apex.conf) in terminal (command line):
+
+<p style="background-color:lightgray">script_name
+
+<p>To run an APEX script with temporary user-defined option values without changing them in the configuration file:
+
+<p style="background-color:lightgray">script_name option1=value option2=value
+
+<p>Some APEX scripts require or allow parameters on command line, e.g.:
+
+<p style="background-color:lightgray">apex_geo_ephem 2019-03-18 20:00
+
+<p>Some APEX scripts can be run from the context menu (right-click of the mouse) of a folder or file.
+<p>Some APEX scripts can be run from within the APEX GUI (graphical user interface).
+
+<hr>
+
+<h3>Upgrade under Windows</h3>
+
+<p>To upgrade installed APEX to a newer version, uninstall previous installation of all APEX packages, delete the folder C:\Apex and repeat the same installation steps for each required APEX package as in the first-time installation. During the upgrade the configuration file will be automatically updated.
+
+<hr>
+
+<p>last updated: 05.05.2019
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+<html>

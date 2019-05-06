@@ -1,0 +1,257 @@
+<html>
+
+<body>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td valign="top" width="300"  style="font-family:monospace">
+
+<h2>APEX user manual</h2>
+
+&#9679; APEX under Ubuntu<br>
+
+&#9675; <a href="windows.html">APEX under Windows</a><br>
+
+&#9675; <a href="conf.html">APEX configuration</a><br>
+
+&#9675; <a href="apex_calibrate.html">Image calibration</a><br>
+
+&#9675; <a href="apex_geo_auto.html">Automated image processing</a><br>
+
+&#9675; <a href="apex_geo.html">Manual image processing</a><br>
+
+&#9675; <a href="apex_geo_monitor.html">Image processing monitor</a><br>
+
+&#9675; <a href="apex_geo_postprocess.html">Postprocessing</a><br>
+
+&#9675; <a href="apex_geo_ephem.html">Ephemeris calculation</a>
+
+</td>
+
+<td style="font-family:monospace">
+
+<h3>Installation under Ubuntu</h3>
+
+<p>This describes the APEX installation from source files under Linux Ubuntu. To use the latest version of APEX, Ubuntu has to be version 16.04 LTS or later. This description assumes that Python 2.7 is already available on your system. This description is valid for the APEX version 2.4.1.20190322. All installation commands given below in this description (highlighted with gray background colour) must be executed in the terminal (on command line) which can be opened by pressing the key combination Ctrl+Alt+T on the keyboard.
+
+<hr>
+
+<h4>Installation of dependencies: relevant system-wide packages for building</h4>
+
+<p>Install all packages:
+
+<p style="background-color:lightgray">sudo apt install build-essential gfortran python-dev
+
+<hr>
+
+<h4>Installation of dependencies: relevant Python packages</h4>
+
+<p>To make the installation of these dependencies simple, first install the python-pip package:
+
+<p style="background-color:lightgray">sudo apt install python-pip
+
+<p>Then install all packages:
+
+<p style="background-color:lightgray">sudo pip install -U cython numpy scipy astropy numba
+
+<p>To use APEX GUI (graphical user interface), install:
+
+<p style="background-color:lightgray">sudo pip install -U pillow pyopengl wxpython exifread rawpy
+
+<hr>
+
+<h4>Installation of dependencies: star catalogues</h4>
+
+<p>For astrometric & photometric reduction as well as for object identification during image processing at least one star catalogue must be available for reference. It is possible to use different star catalogues for either of the two reductions. The catalogue priority system allows to use multiple star catalogues one after another in case the higher priority catalogue fails.
+
+<p>To use the Tycho-2 catalogue, create the folder Tycho-2 anywhere in the user's home directory, e.g.:
+
+<p style="background-color:lightgray">mkdir ~/catalogs/Tycho-2
+
+<p>And put there all four files of the Tycho-2 catalogue: index.dat, suppl_1.dat, suppl_2.dat and tyc2.dat.
+
+<p>If necessary, in a similar way create folders for other star catalogues, e.g. for UCAC5:
+
+<p style="background-color:lightgray">mkdir ~/catalogs/UCAC5
+
+<p>And put there all catalogue files.
+
+<hr>
+
+<h4>Installation of dependencies: satellite orbit catalogues</h4>
+
+<p>For object identification and ephemeris calculation during artificial satellite image processing at least one satellite orbit catalogue must be available for reference. It is possible to use satellite orbit catalogues in TLE and ISON formats. The catalogue priority system allows to use multiple satellite orbit catalogues one after another in case the higher priority catalogue fails.
+
+<p>To use the TLE orbit catalogues, create the folder TLE anywhere in the user's home directory, e.g.:
+
+<p style="background-color:lightgray">mkdir ~/catalogs/TLE
+
+<p>And put there all TLE catalogue files.
+
+<p>To use the ISON orbit catalogues, create the folder ISON anywhere in the user's home directory, e.g.:
+
+<p style="background-color:lightgray">mkdir ~/catalogs/ISON
+
+<p>And put there all ISON catalogue files.
+
+<hr>
+
+<h4>Installation of APEX main package</h4>
+
+<p>Go to the folder where the tarball apex-2.4.1.20190322.tar.gz is stored and unpack it:
+
+<p style="background-color:lightgray">tar xvzf apex-2.4.1.20190322.tar.gz
+
+<p>A new folder apex-2.4.1.20190322 will be created with subfolders and files unpacked into it. Change to that folder:
+
+<p style="background-color:lightgray">cd apex-2.4.1.20190322
+
+<p>Build it:
+
+<p style="background-color:lightgray">python apex-setup.py build
+
+<p>Install it (notice the sudo command!):
+
+<p style="background-color:lightgray">sudo python apex-setup.py install
+
+<hr>
+
+<h4>Installation of APEX EP package</h4>
+
+<p>Notice: Installation of APEX EP package must be done only, if you plan to use APEX for exoplanet image processing.
+
+<p>Go to the folder where the tarball apex-ep-1.2.4.tar.gz is stored and unpack it:
+
+<p style="background-color:lightgray">tar xvzf apex-ep-1.2.4.tar.gz
+
+<p>A new folder apex-ep-1.2.4 will be created with subfolders and files unpacked into it. Change to that folder:
+
+<p style="background-color:lightgray">cd apex-ep-1.2.4
+
+<p>Build it:
+
+<p style="background-color:lightgray">python apex-ep-setup.py build
+
+<p>Install it (notice the sudo command!):
+
+<p style="background-color:lightgray">sudo python apex-ep-setup.py install
+
+<hr>
+
+<h4>Installation of APEX GEO package</h4>
+
+<p>Notice: Installation of APEX GEO package must be done only, if you plan to use APEX for artificial satellite image processing.
+
+<p>Go to the folder where the tarball apex-geo-4.1.6.tar.gz is stored and unpack it:
+
+<p style="background-color:lightgray">tar xvzf apex-geo-4.1.6.tar.gz
+
+<p>A new folder apex-geo-4.1.6 will be created with subfolders and files unpacked into it. Change to that folder:
+
+<p style="background-color:lightgray">cd apex-geo-4.1.6
+
+<p>Build it:
+
+<p style="background-color:lightgray">python apex-geo-setup.py build
+
+<p>Install it (notice the sudo command!):
+
+<p style="background-color:lightgray">sudo python apex-geo-setup.py install
+
+<hr>
+
+<h4>Installation of APEX GUI package</h4>
+
+<p>Notice: Installation of APEX GUI package must be done only, if you plan to use APEX with a graphical user interface.
+
+<p>Go to the folder where the tarball apex-gui-0.10.2.tar.gz is stored and unpack it:
+
+<p style="background-color:lightgray">tar xvzf apex-gui-0.10.2.tar.gz
+
+<p>A new folder apex-gui-0.10.2 will be created with subfolders and files unpacked into it. Change to that folder:
+
+<p style="background-color:lightgray">cd apex-gui-0.10.2
+
+<p>Build it:
+
+<p style="background-color:lightgray">python apex-gui-setup.py build
+
+<p>Install it (notice the sudo command!):
+
+<p style="background-color:lightgray">sudo python apex-gui-setup.py install
+
+<hr>
+
+<h4>Installation of APEX MP package</h4>
+
+<p>Notice: Installation of APEX MP package must be done only, if you plan to use APEX for minor planet image processing.
+
+<p>Go to the folder where the tarball apex-mp-2.1.3.tar.gz is stored and unpack it:
+
+<p style="background-color:lightgray">tar xvzf apex-mp-2.1.3.tar.gz
+
+<p>A new folder apex-mp-2.1.3 will be created with subfolders and files unpacked into it. Change to that folder:
+
+<p style="background-color:lightgray">cd apex-mp-2.1.3
+
+<p>Build it:
+
+<p style="background-color:lightgray">python apex-mp-setup.py build
+
+<p>Install it (notice the sudo command!):
+
+<p style="background-color:lightgray">sudo python apex-mp-setup.py install
+
+<hr>
+
+<h3>Usage under Ubuntu</h3>
+
+<p>APEX must be <a href="conf.html">configured</a> prior to the usage of most of its scripts; only in rare cases default values of configuration options will be acceptable.
+
+<p>All APEX scripts are located in the folder: /usr/local/bin/
+
+<p>To run an APEX script either with default option values or with option values given in the configuration file (apex.conf):
+
+<p style="background-color:lightgray">script_name.py
+
+<p>To run an APEX script with temporary user-defined option values without changing them in the configuration file and overriding the default values:
+
+<p style="background-color:lightgray">script_name.py option1=value option2=value
+
+<p>Some APEX scripts require or allow parameters on command line, e.g.:
+
+<p style="background-color:lightgray">apex_geo_ephem.py 2019-03-18 20:00
+
+<p>Full usage description of each APEX script is given in the docstring section (text section between triple quotation marks: """text""") of the corresponding .py file; to view the .py file open it in any ASCII editor, e.g.:
+
+<p style="background-color:lightgray">gedit /usr/local/bin/apex_calibrate.py
+
+<p>Some of the APEX scripts allow to view their docstrings from the terminal by:
+
+<p style="background-color:lightgray">script_name.py -?
+
+<hr>
+
+<h3>Upgrade under Ubuntu</h3>
+
+<p>To upgrade installed APEX to a newer version, update all dependent Python packages and repeat the same installation steps for each required APEX package as in the first-time installation. During the upgrade the configuration file will be automatically updated.
+
+<hr>
+
+<p>last updated: 06.05.2019
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+<html>
