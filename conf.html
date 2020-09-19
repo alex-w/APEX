@@ -284,9 +284,17 @@ split_by_match =                # [bool] Split series in .check file according t
 <b>Options:</b>
 
 <pre>
+cat_path =                      # [str] Path to catalog files; default: ~/.Apex/ison
+priority =                      # [int] Priority of the catalog for object identification; default: 15
 </pre>
 
 <b>Notes:</b>
+
+<p>This catalogue reader uses files with satellite orbits given in a format developed by Z.N. Khutorovsky.
+
+<p>The option <b>cat_path</b> indicates the full path to the folder, where the catalogue files are stored.
+
+<p>The option <b>priority</b> tells APEX to prefer the <b>ison_reader</b> over the <b>tle_reader</b>, if the value is higher than the corresponding value of the same option in the module section <b>[apex.catalog.tle_reader]</b>.
 
 <hr>
 
@@ -295,9 +303,16 @@ split_by_match =                # [bool] Split series in .check file according t
 <b>Options:</b>
 
 <pre>
+priority =                      # [int] Priority of TLE data for object identification; default: 16
+stdmag =                        # [float] Standard magnitude at 1000km range and 90deg phase angle; default: 2.0
+tle_path =                      # [str] Path to TLE files; default: ~/.Apex/tle
 </pre>
 
 <b>Notes:</b>
+
+<p>This catalogue reader uses files with satellite orbits given in the TLE format.
+
+<p>The option <b>priority</b> tells APEX to prefer the <b>tle_reader</b> over the <b>ison_reader</b>, if the value is higher than the corresponding value of the same option in the module section <b>[apex.catalog.ison_reader]</b>.
 
 <hr>
 
