@@ -42,12 +42,12 @@
 
 <h4>Installation of dependecies: relevant Python packages</h4>
 
-<p>For interactive windows install the Tkinter package (required!):
+<p>For interactive windows install the tkinter package (required!):
 
-<p>For Python2:
+<p>Python2 version:
 <p style="background-color:lightgray">sudo apt-get install python-tk
 
-<p>For Python3:
+<p>Python3 version:
 <p style="background-color:lightgray">sudo apt-get install python3-tk
 
 <p>For plotting install the matplotlib package (required!):
@@ -57,6 +57,50 @@
 <p>For PDM (phase dispersion minimization) analysis of the rotation period install the PyAstronomy package (recommended!):
 
 <p style="background-color:lightgray">sudo pip install -U PyAstronomy
+
+<hr>
+
+<h4>Basic procedure</h4>
+
+<p>The APEX script <b>apex_geo_lightcurve</b> expects you to use an XML file with photometric measurements in 'ISON format' which can be obtained after the image processing by either the <b>apex_geo</b> or the <b>apex_geo_auto</b> APEX script, if you have set the option <b>format = ison</b> in the <b>[apex.extra.GEO.report]</b> section of the APEX configuration file before the image processing.
+
+<p>If necessary, prior to the light curve analysis adjust the script section <b>[apex_geo_lightcurve]</b> in the <a href="conf.html">APEX configuration file</a>.
+
+<p>Put the XML file with photometric measurements in any folder of your choice, open the terminal and run the APEX script:
+
+<p style="background-color:lightgray">apex_geo_lightcurve.py
+
+<p>A file dialogue window will pop up. Choose the XML file with measurements.
+
+<hr>
+
+<h4>Raw light curve plotting</h4>
+
+<p>TBD
+
+<hr>
+
+<h4>Lomb-Scargle periodogram (LSP)</h4>
+
+<p>TBD
+
+<hr>
+
+<h4>Folded light curve plotting</h4>
+
+<p>TBD
+
+<hr>
+
+<h4>Phase dispersion minimization (PDM) analysis</h4>
+
+<p>TBD
+
+<hr>
+
+<h4>Deleting/restoring data points in light curve plots</h4>
+
+<p>TBD
 
 <hr>
 
