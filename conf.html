@@ -219,15 +219,15 @@ y_lim_min =                     # [float] Lower limit for the y-axis (max bright
 
 <p>The option <b>period_factor</b> should be given higher values than the default in cases when the actual satellite rotation period is a multiple of the light curve period.
 
-<p>If the option <b>phi_by_coords</b> is set to True (default value), then the satellite phase angles will be calculated from the topocentric equatorial coordinates of the Sun and of the satellite with an assumption that the vectors Sun-satellite and Sun-observer are parallel; this will introduce some errors of the calculated phase angle, the smaller is the distance observer-satellite, the smaller will be this error; this option setting allows only to plot the raw light curve of the measured apparent brightness, and the rotation period search along with the folded light curve plotting will be excluded, being impossible due to the lack of the satellite orbital data which is necessary for the observer-satellite distance calculation and, thus, for the calculation of the reduced brightness.
+<p>If the option <b>phi_by_coords</b> is set to <b>True</b> (default value), then the satellite phase angles will be calculated from the topocentric equatorial coordinates of the Sun and of the satellite with an assumption that the vectors Sun-satellite and Sun-observer are parallel; this will introduce some errors of calculated phase angles, the smaller is the observer-satellite distance, the smaller will be these errors; this option setting allows only to plot the raw light curve of the measured apparent brightness, and the rotation period search along with the folded light curve plotting will be excluded, being impossible due to the lack of the satellite orbital data, which is necessary both for the observer-satellite distance calculation and, thereupon, for the reduced brightness calculation, with the latter being the requirement for precise rotation period search.
 
-<p>If the option <b>phi_by_coords</b> is set to False, then the satellite phase angles will be calculated on the basis of the orbit; to enable reading of orbit catalogue(s), refer to the module sections <b>[apex.catalog.ison_reader]</b> and <b>[apex.catalog.tle_reader]</b> of the APEX configuration file; if there are multiple catalogues for the same satellite, the one which is closer in time to the epoch of the observation start will be used.
+<p>If the option <b>phi_by_coords</b> is set to <b>False</b>, then the satellite phase angles will be calculated on the basis of the satellite orbit; to enable reading of orbit catalogue(s), refer to the module sections <b>[apex.catalog.ison_reader]</b> and <b>[apex.catalog.tle_reader]</b> of the APEX configuration file; if there are multiple catalogues for the same satellite, the one which is closer in time to the epoch of the observation start will be used.
 
 <p>The options <b>max_freq</b>, <b>min_freq</b> and <b>samples</b> influence the Lomb-Scargle periodogram.
 
 <p>The options <b>max_freq</b>, <b>min_freq</b>, <b>pdm_covers</b> and <b>pdm_nbins</b> influence the PDM (phase dispersion minimization) algorithm.
 
-<p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used only to scale the raw light curve plot along the brightness axis (y-axis).
+<p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used only to scale the raw light curve plot along the brightness axis (y-axis) by these fixed values; if they are not set (as by default), then the scaling will be done automatically.
 
 <hr>
 
