@@ -215,6 +215,8 @@ y_lim_min =                     # [float] Lower limit for the y-axis (max bright
 
 <p>This section is always used by the script <b>apex_geo_lightcurve</b> whenever you run it.
 
+<p>The options <b>phi_tick_step</b>, <b>plot_title</b>, <b>show_errorbars<b>, <b>show_title</b>, <b>time_interval</b> and <b>time_rotation</b> refer only to the raw light curve plot.
+
 <p>If the option <b>forced_period</b> is set to some value, then the folded light curve will be plotted to the forced period regardless of the period value found by either the Lomb-Scargle or the PDM algorithm.
 
 <p>The option <b>period_factor</b> should be given higher values than the default in cases when the actual satellite rotation period is a multiple of the light curve period.
@@ -227,7 +229,7 @@ y_lim_min =                     # [float] Lower limit for the y-axis (max bright
 
 <p>The options <b>max_freq</b>, <b>min_freq</b>, <b>pdm_covers</b> and <b>pdm_nbins</b> influence the PDM (phase dispersion minimization) algorithm.
 
-<p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used only to scale the raw light curve plot along the brightness axis (y-axis) by these fixed values; if they are not set (as by default), then the scaling will be done automatically.
+<p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used to scale only the raw light curve plot along the brightness axis (y-axis) by these fixed values; if they are not set (as by default), then the scaling will be done automatically.
 
 <hr>
 
