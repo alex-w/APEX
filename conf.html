@@ -186,11 +186,10 @@ template =                      # [str] Ephemeris file name template, default: (
 <b>Options:</b>
 
 <pre>
-
 ccd_filter =                    # [str] Abbreviated name of the CCD filter (e.g. R, V, B, G); default: G
 forced_period =                 # [float] Forced value of the rotation period; default: None
-max_freq =                      # [float] Maximum frequency for the period search; default: 0.1
-min_freq =                      # [float] Minimum frequency for the period search; default: 0.001
+max_freq =                      # [float] Maximum frequency (Hz) for the period search; default: 0.1
+min_freq =                      # [float] Minimum frequency (Hz) for the period search; default: 0.001
 pdm_covers =                    # [int] Number of covers for the bin sequences offset by 1/(nbins*covers) in PDM analysis; default: 3
 pdm_nbins =                     # [int] Number of equidistant bins in PDM analysis; default: 20
 period_factor =                 # [int] Rotation period factor of the light curve period; default: 1
@@ -207,14 +206,28 @@ show_title =                    # [bool] Show the plot title; default: True
 skip_lsp =                      # [bool] Skip Lomb-Scargle periodogram and folded light curve plotting; default: True
 skip_pdm =                      # [bool] Skip PDM analysis and folded light curve plotting; default: True
 time_interval =                 # [int] Step in minutes for the ticks of the time axis (time_interval >= 1); default: 2
-time_rotation =                 # [float] Counter-clockwise rotation angle in degrees for the tick labels of the time axis; default: 45
+time_rotation =                 # [float] Counter-clockwise rotation angle (deg) for the tick labels of the time axis; default: 45
 y_lim_max =                     # [float] Upper limit for the y-axis (min brightness); default: None
 y_lim_min =                     # [float] Lower limit for the y-axis (max brightness); default: None
 </pre>
 
 <b>Notes:</b>
 
-<p>
+<p>This section is always used by the script <b>apex_geo_lightcurve</b> whenever you run it.
+
+<p>If the option <b>forced_period</b> is set to some value, then the folded light curve will be plotted to the forced period regardless of the period value found either by the Lomb-Scargle or by the PDM algorithm.
+
+<p>The option <b>period_factor</b> should be given higher values than the default in cases when the actual satellite rotation period is a multiple of the light curve period.
+
+<p>If the option <b>phi_by_coords</b> is set to True (default value), then the satellite phase angles will be calculated from the topocentric equatorial coordinates of the Sun and of the satellite with an assumption that the vectors Sun-satellite and Sun-observer are parallel; this will introduce some errors of the calculated phase angle, the smaller is the distance observer-satellite, the smaller will be this error; this option setting allows only to plot the raw light curve of the measured apparent brightness, and the rotation period search along with the folded light curve plotting will be excluded, being impossible due to the lack of the satellite orbital data which is necessary for the observer-satellite distance calculation and, thus, for the calculation of the reduced brightness.
+
+<p>If the option <b>phi_by_coords</b> is set to False, then the satellite phase angles will be calculated on the basis of the orbit; to enable reading of orbit catalogue(s), refer to the module sections <b>[apex.catalog.ison_reader]</b> and <b>[apex.catalog.tle_reader]</b> of the APEX configuration file; if there are multiple catalogues for the same satellite, the one which is closer in time to the epoch of the observation start will be used.
+
+<p>The options <b>max_freq</b>, <b>min_freq</b> and <b>samples</b> influence the Lomb-Scargle periodogram.
+
+<p>The options <b>max_freq</b>, <b>min_freq</b>, <b>pdm_covers</b> and <b>pdm_nbins</b> influence the PDM (phase dispersion minimization) algorithm.
+
+<p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used only to scale the raw light curve plot along the brightness axis (y-axis).
 
 <hr>
 
