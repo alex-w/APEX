@@ -62,7 +62,7 @@
 
 <h4>Basic procedure</h4>
 
-<p>The APEX script <b>apex_geo_lightcurve</b> expects you to use an XML file with photometric measurements in 'ISON format' which can be obtained after the image processing by either the <b>apex_geo</b> or the <b>apex_geo_auto</b> APEX script, if you have set the option <b>format = ison</b> in the <b>[apex.extra.GEO.report]</b> section of the APEX configuration file before the image processing.
+<p>The APEX script <b>apex_geo_lightcurve</b> expects you to use an XML file with photometric measurements in 'ISON format' which can be obtained after the image processing by either the <b>apex_geo</b> or the <b>apex_geo_auto</b> APEX script, if you have set the option <b>format = ison</b> in the <b>[apex.extra.GEO.report]</b> section of the <a href="conf.html">APEX configuration file</a> before the image processing.
 
 <p>If necessary, prior to the light curve analysis adjust the script section <b>[apex_geo_lightcurve]</b> in the <a href="conf.html">APEX configuration file</a>.
 
@@ -70,13 +70,25 @@
 
 <p style="background-color:lightgray">apex_geo_lightcurve.py
 
-<p>A file dialogue window will pop up. Choose the XML file with measurements.
+<p>A file dialogue window will pop up. Select and open one XML file with measurements. The script will read in the entire data set contained in the selected file.
 
 <hr>
 
 <h4>Raw light curve plotting</h4>
 
-<p>TBD
+<p>Upon reading the file with measurements, the script will process each satellite block contained in the file one after another, applying the option setting of the script section <b>[apex_geo_lightcurve]</b> in the <a href="conf.html">APEX configuration file</a>.
+
+<p>If a measurement in the satellite block does not contain at least one of the tags <b><mag></b> and <b><mag_error></b>, or if at least one of these two tags has the value <b>nan</b>, then this measurement is skipped from the analysis. After parsing the entire satellite block, the script outputs in the terminal the final number of valid measurements available for the analysis of the current satellite.
+
+<p>Then a window with the raw light curve plot will pop up, showing the measurements of the satellite apparent brightness versus the UT time-stamps as contained in the measurements file. The auxilary x-axis at the top shows the corresponding phase angles – for the first and the last measurement and for evenly spaced measurements in-between. If the title is set to be shown, it will include the UT date of the first measurement.
+
+<p>Then you can interactively delete and restore deleted data points in the plot. (see below)
+
+<p>If the phase angle calculation was set to be done from the equatorial coordinates, or, if both the Lomb-Scargle periodogram and the PDM analysis were set to be skipped, then by closing the raw light curve plot window you will proceed to the next satellite block available in the measurements file, until you reach the last one and thus will finish the script execution.
+
+<p>If any data points were deleted interactively, only the remaining data points will be used in further analysis.
+
+<p>After closing the raw light curve plot window, the script saves the current/changed data set into the same measurements file, regardless of whether you have deleted any data points or not.
 
 <hr>
 
@@ -100,7 +112,7 @@
 
 <h4>Deleting/restoring data points in light curve plots</h4>
 
-<p>TBD
+<p>Both in the raw light curve and in the folded light curve plot you can delete single data point by left-clicking on them in the plot; in case of the folded light curve the deletion can be done only in the middle part of the triple plot. By right-clicking anywhere in the plot you can restore the deleted data points in reverse order (from the last to the first).
 
 <hr>
 
