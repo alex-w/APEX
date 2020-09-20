@@ -114,7 +114,7 @@
 
 <h4>Phase dispersion minimization (PDM) analysis</h4>
 
-<p><p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the PDM (phase dispersion minimization) analysis was not set to be skipped (<b>skip_pdm = False</b>), then after closing either the raw light curve plot window or the folded light curve plot window (the one produced after applying the Lomb-Scargle periodogram) the script will apply the PDM analysis to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b>, with a number of covers for bin sequences and with a number of equidistant bins set by the options <b>pdm_covers</b> and <b>pdm_nbins</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
+<p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the PDM (phase dispersion minimization) analysis was not set to be skipped (<b>skip_pdm = False</b>), then after closing either the raw light curve plot window (when the Lomb-Scargle periodogram is set to be skipped) or the folded light curve plot window (previously produced on the basis of the Lomb-Scargle periodogram) the script will apply the PDM analysis to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b>, with a number of covers for bin sequences and with a number of equidistant bins set by the options <b>pdm_covers</b> and <b>pdm_nbins</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
 
 <p>Then a window with the PDM plot will pop up, showing the PDM itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single minimum power peak at a frequency corresponding to the light curve period of highest probability.
 
@@ -128,7 +128,7 @@
 
 <hr>
 
-<p>last updated: 19.09.2020
+<p>last updated: 20.09.2020
 
 </td>
 
