@@ -100,7 +100,7 @@
 
 <p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the Lomb-Scargle periodogram was not set to be skipped (<b>skip_lsp = False</b>), then after closing the raw light curve plot window the script will apply the Lomb-Scargle periodogram to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b> and with a frequency resolution set by the option <b>samples</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
 
-<p>Then a window with the Lomb-Scargle periodogram plot will pop up, showing the periodogram itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single maximum peak at frequency corresponding to the light curve period of highest probability.
+<p>Then a window with the Lomb-Scargle periodogram plot will pop up, showing the periodogram itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single maximum power peak at a frequency corresponding to the light curve period of highest probability.
 
 <p>After closing the Lomb-Scargle periodogram plot window, the script will forward the obtained satellite rotation period to the folded light curve plotting procedure. (see below)
 
@@ -116,7 +116,7 @@
 
 <p><p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the PDM (phase dispersion minimization) analysis was not set to be skipped (<b>skip_pdm = False</b>), then after closing either the raw light curve plot window or the folded light curve plot window (the one produced after applying the Lomb-Scargle periodogram) the script will apply the PDM analysis to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b>, with a number of covers for bin sequences and with a number of equidistant bins set by the options <b>pdm_covers</b> and <b>pdm_nbins</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
 
-<p>Then a window with the PDM plot will pop up, showing the PDM itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single minimum peak at frequency corresponding to the light curve period of highest probability.
+<p>Then a window with the PDM plot will pop up, showing the PDM itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single minimum power peak at a frequency corresponding to the light curve period of highest probability.
 
 <p>After closing the PDM plot window, the script will forward the obtained satellite rotation period to the folded light curve plotting procedure. (see above)
 
