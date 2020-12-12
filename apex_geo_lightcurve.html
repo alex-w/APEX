@@ -114,7 +114,7 @@
 
 <p>Also, you can interactively re-draw the folded light curve with a forced satellite rotation period different from the one found automatically by the Lomb-Scargle periodogram or by the PDM analysis. There are two ways to do that: 1) by pulling the slider (red line) with a mouse pointer along the <b>Period (s)</b> bar in the range set by the options <b>slider_max</b> and <b>slider_min</b> with a slider step set by the option <b>slider_step</b>, 2) by entering any fixed value in the <b>Set period (s)</b> text field and hitting the Enter key. After the manual change of the satellite rotation period you can always re-draw the folded light curve plot with the original rotation period automatically found by the Lomb-Scargle periodogram or the PDM analysis by clicking on the <b>Reset</b> button.
 
-<p>If you have set the option <b>forced_period</b> with some value of the satellite rotation period, then the folded light curve will be plotted being forced to this value overriding the value automatically found by the Lomb-Scargle periodogram or by the PDM analysis.
+<p>If you have set the option <b>forced_period</b> with some value of the satellite rotation period, then, after closing the raw light curve plot, the folded light curve will immediately be plotted being forced to this value skipping the application of the Lomb-Scargle periodogram and the PDM analysis.
 
 <p><b>WARNING!</b> After closing the folded light curve plot window, if you have deleted any data points, the script saves the current/changed data set overwriting the same measurements file.
 
