@@ -98,7 +98,7 @@
 
 <h4>Lomb-Scargle periodogram (LSP)</h4>
 
-<p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the Lomb-Scargle periodogram was not set to be skipped (<b>skip_lsp = False</b>), then after closing the raw light curve plot window the script will apply the Lomb-Scargle periodogram to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b> and with a frequency resolution set by the option <b>samples</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
+<p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>), the forced rotation period was not set to any value (<b>forced_period =</b>), and the Lomb-Scargle periodogram was not set to be skipped (<b>skip_lsp = False</b>), then after closing the raw light curve plot window the script will apply the Lomb-Scargle periodogram to the satellite data set to search for a light curve period in it; it will be applied within the period range set by the options <b>max_period</b> and <b>min_period</b> and with a frequency resolution set by the option <b>samples</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
 
 <p>Then a window with the Lomb-Scargle periodogram plot will pop up, showing the periodogram itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single maximum power peak at a frequency corresponding to the light curve period of highest probability.
 
@@ -122,7 +122,7 @@
 
 <h4>Phase dispersion minimization (PDM) analysis</h4>
 
-<p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>) and the PDM (phase dispersion minimization) analysis was not set to be skipped (<b>skip_pdm = False</b>), then after closing either the raw light curve plot window (when the Lomb-Scargle periodogram is set to be skipped) or the folded light curve plot window (previously produced on the basis of the Lomb-Scargle periodogram) the script will apply the PDM analysis to the satellite data set to search for a light curve period in it; it will be applied within the frequency range set by the options <b>max_freq</b> and <b>min_freq</b>, with a number of covers for bin sequences and with a number of equidistant bins set by the options <b>pdm_covers</b> and <b>pdm_nbins</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
+<p>If the phase angle calculation was set to be done from the orbit (<b>phi_by_coords = False</b>), the forced rotation period was not set to any value (<b>forced_period =</b>), and the PDM (phase dispersion minimization) analysis was not set to be skipped (<b>skip_pdm = False</b>), then after closing either the raw light curve plot window (when the Lomb-Scargle periodogram is set to be skipped) or the folded light curve plot window (previously produced on the basis of the Lomb-Scargle periodogram) the script will apply the PDM analysis to the satellite data set to search for a light curve period in it; it will be applied within the period range set by the options <b>max_period</b> and <b>min_period</b>, with a number of covers for bin sequences and with a number of equidistant bins set by the options <b>pdm_covers</b> and <b>pdm_nbins</b> in the script section <b>[apex_geo_lightcurve]</b> of the <a href="conf.html">APEX configuration file</a>.
 
 <p>Then a window with the PDM plot will pop up, showing the PDM itself and the satellite rotation period calculated from the light curve period and the option <b>period_factor</b>. In ideal case, the periodogram will show only one single minimum power peak at a frequency corresponding to the light curve period of highest probability.
 
@@ -138,7 +138,7 @@
 
 <h4>Remarks</h4>
 
-<p>It is better to use an XML measurements file which contains a data set for only one single satellite, because many different satellites in the same measurements file will require a very broad frequency range (<b>max_freq</b> and <b>min_freq</b>) due to possibly very different rotation periods, this may cause wrong determination of the rotation period and will also considerably increase the analysis time.
+<p>It is better to use an XML measurements file which contains a data set for only one single satellite, because many different satellites in the same measurements file will require a very broad period range (set by the options <b>max_period</b> and <b>min_period</b>) due to possibly very different rotation periods, this may cause wrong determination of the rotation period and will also considerably increase the analysis time.
 
 <p>Frequently, the PDM analysis yields better results than the Lomb-Scargle periodogram.
 
