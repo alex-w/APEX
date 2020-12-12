@@ -187,25 +187,31 @@ template =                      # [str] Ephemeris file name template, default: (
 
 <pre>
 ccd_filter =                    # [str] Abbreviated name of the CCD filter (e.g. R, V, B, G); default: G
+folded_y_lim_max =              # [float] Upper limit for the y-axis (min brightness) in the folded light curve; default: None
+folded_y_lim_min =              # [float] Lower limit for the y-axis (max brightness) in the folded light curve; default: None
 forced_period =                 # [float] Forced value of the rotation period; default: None
-max_freq =                      # [float] Maximum frequency (Hz) for the period search; default: 0.1
-min_freq =                      # [float] Minimum frequency (Hz) for the period search; default: 0.001
+max_period =                    # [float] Maximum period (sec) for the period search; default: 1000
+min_period =                    # [float] Minimum period (sec) for the period search; default: 10
 pdm_covers =                    # [int] Number of covers for the bin sequences offset by 1/(nbins*covers) in PDM analysis; default: 3
 pdm_nbins =                     # [int] Number of equidistant bins in PDM analysis; default: 20
 period_factor =                 # [int] Rotation period factor of the light curve period; default: 1
-period_precision =              # [float] Number of decimals to round the rotation period to; default: 3
+period_precision =              # [float] Number of decimals to round the rotation period to (1 <= period_precision <= 14); default: 3
 phi_by_coords =                 # [bool] Calculate phase angles from equatorial coordinates if True, else calculate from orbit; default: True
-phi_m0 =                        # [float] The satellite phase angle (deg) for the reduced brightness m0; default: 90
-phi_tick_step =                 # [int] Step in measurements for the ticks of the phase angle axis (phi_tick_step >= 2); default: 20
+phi_m0 =                        # [float] The satellite phase angle (deg) for the reduced brightness m0 (0 <= phi_m0 <= 180); default: 90
+phi_tick_step =                 # [int] Step in measurements for the ticks of the phase angle axis (phi_tick_step => 2); default: 20
+plot_res =                      # [int] Resolution (dpi) for saving the plots; default: 300
 plot_title =                    # [str] Part of the plot title with observatory name; default: None
 range_m0 =                      # [float] The satellite range (km) for the reduced brightness m0; default: 1000
-round_phi =                     # [int] Number of decimals to round the phase angle value to (14 => round_phi >= 1); default: 1
-samples =                       # [float] Samples per peak for the Lomb-Scargle periodogram; default: 1000
+round_phi =                     # [int] Number of decimals to round the phase angle value to (1 <= round_phi <= 14); default: 1
+samples =                       # [float] Samples per peak for the Lomb-Scargle periodogram and for the frequency step of the PDM as 0.1/samples; default: 1000
 show_errorbars =                # [bool] Show the magnitude error bars for each brightness data point; default: True
 show_title =                    # [bool] Show the plot title; default: True
 skip_lsp =                      # [bool] Skip Lomb-Scargle periodogram and folded light curve plotting; default: True
 skip_pdm =                      # [bool] Skip PDM analysis and folded light curve plotting; default: True
-time_interval =                 # [int] Step in minutes for the ticks of the time axis (time_interval >= 1); default: 2
+slider_max =                    # [float] Maximum value for the rotation period slider (slider_max > 0); default: 600.0
+slider_min =                    # [float] Minimum value for the rotation period slider (slider_min > 0); default: 0.001
+slider_step =                   # [float] Step value for the rotation period slider (slider_step > 0); default: 0.001
+time_interval =                 # [int] Step in minutes for the ticks of the time axis (time_interval => 1); default: 2
 time_rotation =                 # [float] Counter-clockwise rotation angle (deg) for the tick labels of the time axis; default: 45
 y_lim_max =                     # [float] Upper limit for the y-axis (min brightness); default: None
 y_lim_min =                     # [float] Lower limit for the y-axis (max brightness); default: None
@@ -217,7 +223,7 @@ y_lim_min =                     # [float] Lower limit for the y-axis (max bright
 
 <p>The options <b>phi_tick_step</b>, <b>plot_title</b>, <b>show_errorbars</b>, <b>show_title</b>, <b>time_interval</b> and <b>time_rotation</b> refer only to the raw light curve plot.
 
-<p>If the option <b>forced_period</b> is set to some value, then the folded light curve will be plotted to the forced period regardless of the period value found by either the Lomb-Scargle or the PDM algorithm.
+<p>If the option <b>forced_period</b> is set to some value, then the application of the Lomb-Scargle periodogram and of the PDM analysis will be skipped (even if the options <b>skip_lsp</b> and <b>skip_pdm</b> are set to <b>False</b>), and the folded light curve will immediately be plotted to the forced period.
 
 <p>The option <b>period_factor</b> should be given higher values than the default in cases when the actual satellite rotation period is a multiple of the light curve period.
 
@@ -225,11 +231,15 @@ y_lim_min =                     # [float] Lower limit for the y-axis (max bright
 
 <p>If the option <b>phi_by_coords</b> is set to <b>False</b>, then the satellite phase angles will be calculated on the basis of the satellite orbit; to enable reading of orbit catalogue(s), refer to the module sections <b>[apex.catalog.ison_reader]</b> and <b>[apex.catalog.tle_reader]</b> of the APEX configuration file; if there are multiple catalogues for the same satellite, the one which is closer in time to the epoch of the observation start will be used.
 
-<p>The options <b>max_freq</b>, <b>min_freq</b> and <b>samples</b> influence the Lomb-Scargle periodogram.
+<p>The options <b>max_period</b>, <b>min_period</b> and <b>samples</b> influence the Lomb-Scargle periodogram.
 
-<p>The options <b>max_freq</b>, <b>min_freq</b>, <b>pdm_covers</b> and <b>pdm_nbins</b> influence the PDM (phase dispersion minimization) algorithm.
+<p>The options <b>max_period</b>, <b>min_period</b>, <b>pdm_covers</b> and <b>pdm_nbins</b> influence the PDM (phase dispersion minimization) algorithm.
 
 <p>The options <b>y_lim_max</b> and <b>y_lim_min</b> are used to scale only the raw light curve plot along the brightness axis (y-axis) by these fixed values; if they are not set (as by default), then the scaling will be done automatically.
+
+<p>The options <b>folded_y_lim_max</b> and <b>folded_y_lim_min</b> are used to scale only the folded light curve plot along the brightness axis (y-axis) by these fixed values; if they are not set (as by default), then the scaling will be done automatically.
+
+<p>The options <b>slider_max</b>, <b>slider_min</b> and <b>slider_step</b> must be larger than 0, otherwise it will produce a division by zero error.
 
 <hr>
 
@@ -490,7 +500,7 @@ update_interval =               # [int] [day] MPC observatory code database upda
 
 <hr>
 
-<p>last updated: 19.09.2020
+<p>last updated: 12.12.2020
 
 </td>
 
