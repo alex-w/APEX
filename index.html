@@ -38,7 +38,7 @@
 
 <h3>Installation under Ubuntu</h3>
 
-<p>This describes the APEX installation from source files under Linux Ubuntu. To use the latest version of APEX, Ubuntu has to be version 16.04 LTS or later. This description assumes that Python 2.7 is already available on your system. This description is valid for the APEX version 2.4.1.20190322. All installation commands given below in this description (highlighted with gray background colour) must be executed in the terminal (on command line) which can be opened by pressing the key combination Ctrl+Alt+T on the keyboard.
+<p>This describes the APEX installation from source files under Linux Ubuntu. To use the latest version of APEX, Ubuntu has to be version 16.04 LTS or later. This description assumes that Python 2.7 is already available on your system. This description is valid for the APEX version 2.4.1.20190618. All installation commands given below in this description (highlighted with gray background colour) must be executed in the terminal (on command line) which can be opened by pressing the key combination Ctrl+Alt+T on the keyboard.
 
 <hr>
 
@@ -56,9 +56,17 @@
 
 <p style="background-color:lightgray">sudo apt install python-pip
 
+<p>And update it:
+
+<p style="background-color:lightgray">pip install --upgrade pip
+
 <p>Then install all packages:
 
-<p style="background-color:lightgray">sudo pip install -U cython numpy scipy astropy numba
+<p style="background-color:lightgray">sudo pip install -U cython numpy scipy astropy
+
+<p style="background-color:lightgray">sudo pip install -U llvmlite==0.31.0
+
+<p style="background-color:lightgray">sudo pip install -U numba==0.47.0
 
 <p>To use APEX GUI (graphical user interface), install:
 
@@ -244,7 +252,7 @@
 
 <hr>
 
-<p>last updated: 06.05.2019
+<p>last updated: 27.09.2021
 
 </td>
 
