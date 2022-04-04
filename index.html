@@ -38,7 +38,7 @@
 
 <h3>Installation under Ubuntu</h3>
 
-<p>This describes the APEX installation from source files under Linux Ubuntu. To use the latest version of APEX, Ubuntu has to be version 16.04 LTS or later. This description assumes that Python 2.7 is already available on your system. This description is valid for the APEX version 2.4.1.20190618. All installation commands given below in this description (highlighted with gray background colour) must be executed in the terminal (on command line) which can be opened by pressing the key combination Ctrl+Alt+T on the keyboard.
+<p>This describes the APEX installation from source files under Linux Ubuntu. To use the latest version of APEX, Ubuntu has to be version 16.04 LTS or later. This description assumes that Python 3 is already available on your system. This description is valid for the APEX version 2021.01.4. All installation commands given below in this description (highlighted with gray background colour) must be executed in the terminal (on command line) which can be opened by pressing the key combination Ctrl+Alt+T on the keyboard.
 
 <hr>
 
@@ -46,7 +46,7 @@
 
 <p>Install all packages:
 
-<p style="background-color:lightgray">sudo apt install build-essential gfortran python-dev
+<p style="background-color:lightgray">sudo apt install build-essential gfortran python3-dev python3-tk
 
 <hr>
 
@@ -54,23 +54,21 @@
 
 <p>To make the installation of these dependencies simple, first install the python-pip package:
 
-<p style="background-color:lightgray">sudo apt install python-pip
+<p style="background-color:lightgray">sudo apt install python3-pip
 
 <p>And update it:
 
-<p style="background-color:lightgray">pip install --upgrade pip
+<p style="background-color:lightgray">pip3 install --upgrade pip
 
 <p>Then install all packages:
 
-<p style="background-color:lightgray">sudo pip install -U cython numpy scipy astropy
-
-<p style="background-color:lightgray">sudo pip install -U llvmlite==0.31.0
-
-<p style="background-color:lightgray">sudo pip install -U numba==0.47.0
+<p style="background-color:lightgray">sudo pip3 install -U cython numpy scipy==1.7.3 astropy numba dask dask-image matplotlib
 
 <p>To use APEX GUI (graphical user interface), install:
 
-<p style="background-color:lightgray">sudo pip install -U pillow pyopengl exifread rawpy
+<p style="background-color:lightgray">sudo pip3 install -U pillow pyopengl exifread rawpy
+
+<p>WARNING: description of wxpython installation below needs to be updated to Python 3
 
 <p>And:
 
@@ -118,21 +116,21 @@
 
 <h4>Installation of APEX main package</h4>
 
-<p>Go to the folder where the tarball apex-2.4.1.20190618.tar.gz is stored and unpack it:
+<p>Go to the folder where the tarball apex-2021.01.4.tar.gz is stored and unpack it:
 
-<p style="background-color:lightgray">tar xvzf apex-2.4.1.20190618.tar.gz
+<p style="background-color:lightgray">tar xvzf apex-2021.01.4.tar.gz
 
-<p>A new folder apex-2.4.1.20190618 will be created with subfolders and files unpacked into it. Change to that folder:
+<p>A new folder apex-2021.01.4 will be created with subfolders and files unpacked into it. Change to that folder:
 
-<p style="background-color:lightgray">cd apex-2.4.1.20190618
+<p style="background-color:lightgray">cd apex-2021.01.4
 
 <p>Build it:
 
-<p style="background-color:lightgray">python apex-setup.py build
+<p style="background-color:lightgray">python3 apex-setup.py build
 
 <p>Install it (notice the sudo command!):
 
-<p style="background-color:lightgray">sudo python apex-setup.py install
+<p style="background-color:lightgray">sudo python3 apex-setup.py install
 
 <hr>
 
@@ -150,11 +148,11 @@
 
 <p>Build it:
 
-<p style="background-color:lightgray">python apex-ep-setup.py build
+<p style="background-color:lightgray">python3 apex-ep-setup.py build
 
 <p>Install it (notice the sudo command!):
 
-<p style="background-color:lightgray">sudo python apex-ep-setup.py install
+<p style="background-color:lightgray">sudo python3 apex-ep-setup.py install
 
 <hr>
 
@@ -162,21 +160,21 @@
 
 <p>Notice: Installation of APEX GEO package must be done only, if you plan to use APEX for artificial satellite image processing.
 
-<p>Go to the folder where the tarball apex-geo-4.2.0.tar.gz is stored and unpack it:
+<p>Go to the folder where the tarball apex-geo-4.3.2.tar.gz is stored and unpack it:
 
-<p style="background-color:lightgray">tar xvzf apex-geo-4.2.0.tar.gz
+<p style="background-color:lightgray">tar xvzf apex-geo-4.3.2.tar.gz
 
-<p>A new folder apex-geo-4.2.0 will be created with subfolders and files unpacked into it. Change to that folder:
+<p>A new folder apex-geo-4.3.2 will be created with subfolders and files unpacked into it. Change to that folder:
 
-<p style="background-color:lightgray">cd apex-geo-4.2.0
+<p style="background-color:lightgray">cd aapex-geo-4.3.2
 
 <p>Build it:
 
-<p style="background-color:lightgray">python apex-geo-setup.py build
+<p style="background-color:lightgray">python3 apex-geo-setup.py build
 
 <p>Install it (notice the sudo command!):
 
-<p style="background-color:lightgray">sudo python apex-geo-setup.py install
+<p style="background-color:lightgray">sudo python3 apex-geo-setup.py install
 
 <hr>
 
@@ -184,21 +182,21 @@
 
 <p>Notice: Installation of APEX GUI package must be done only, if you plan to use APEX with a graphical user interface.
 
-<p>Go to the folder where the tarball apex-gui-0.10.2.tar.gz is stored and unpack it:
+<p>Go to the folder where the tarball apex-gui-0.10.4.tar.gz is stored and unpack it:
 
-<p style="background-color:lightgray">tar xvzf apex-gui-0.10.2.tar.gz
+<p style="background-color:lightgray">tar xvzf apex-gui-0.10.4.tar.gz
 
-<p>A new folder apex-gui-0.10.2 will be created with subfolders and files unpacked into it. Change to that folder:
+<p>A new folder apex-gui-0.10.4 will be created with subfolders and files unpacked into it. Change to that folder:
 
-<p style="background-color:lightgray">cd apex-gui-0.10.2
+<p style="background-color:lightgray">cd apex-gui-0.10.4
 
 <p>Build it:
 
-<p style="background-color:lightgray">python apex-gui-setup.py build
+<p style="background-color:lightgray">python3 apex-gui-setup.py build
 
 <p>Install it (notice the sudo command!):
 
-<p style="background-color:lightgray">sudo python apex-gui-setup.py install
+<p style="background-color:lightgray">sudo python3 apex-gui-setup.py install
 
 <hr>
 
@@ -206,21 +204,21 @@
 
 <p>Notice: Installation of APEX MP package must be done only, if you plan to use APEX for minor planet image processing.
 
-<p>Go to the folder where the tarball apex-mp-2.1.3.tar.gz is stored and unpack it:
+<p>Go to the folder where the tarball apex-mp-2.1.5.tar.gz is stored and unpack it:
 
-<p style="background-color:lightgray">tar xvzf apex-mp-2.1.3.tar.gz
+<p style="background-color:lightgray">tar xvzf apex-mp-2.1.5.tar.gz
 
-<p>A new folder apex-mp-2.1.3 will be created with subfolders and files unpacked into it. Change to that folder:
+<p>A new folder apex-mp-2.1.5 will be created with subfolders and files unpacked into it. Change to that folder:
 
-<p style="background-color:lightgray">cd apex-mp-2.1.3
+<p style="background-color:lightgray">cd apex-mp-2.1.5
 
 <p>Build it:
 
-<p style="background-color:lightgray">python apex-mp-setup.py build
+<p style="background-color:lightgray">python3 apex-mp-setup.py build
 
 <p>Install it (notice the sudo command!):
 
-<p style="background-color:lightgray">sudo python apex-mp-setup.py install
+<p style="background-color:lightgray">sudo python3 apex-mp-setup.py install
 
 <hr>
 
@@ -258,7 +256,7 @@
 
 <hr>
 
-<p>last updated: 27.09.2021
+<p>last updated: 04.04.2022
 
 </td>
 
